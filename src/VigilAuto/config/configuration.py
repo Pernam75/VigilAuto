@@ -7,19 +7,19 @@ class ConfigurationManager:
     def __init__(
         self,
         config_filepath = CONFIG_FILE_PATH,
-        secrets_filepath = SECRET_FILE_PATH):
+        secrets_filepath = SECRETS_FILE_PATH):
 
         self.config = read_yaml(config_filepath)
         try:
             self.secrets = read_yaml(secrets_filepath)
         except FileNotFoundError:
-            self.secrets.groq_api_key = os.environ.get("GROQ_API_KEY")
+            self.secrets = None
 
     def get_llm_config(self):
         config = self.config.llm
-        secrets = self.secrets.llm
+        secrets = self.secrets.llm if self.secrets else None
         return LLMConfig(
-            groq_api_key=secrets.groq_api_key,
+            groq_api_key=secrets.groq_api_key if secrets else os.getenv("GROQ_API_KEY"),
             system_prompt=config.system_prompt,
             max_tokens_response=config.max_tokens_response,
             temperature=config.temperature,
