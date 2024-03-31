@@ -1,6 +1,7 @@
 from VigilAuto.constants import *
 from VigilAuto.utils.common import read_yaml
 from VigilAuto.entity.config_entity import (LLMConfig)
+import os
 
 class ConfigurationManager:
     def __init__(
@@ -9,7 +10,10 @@ class ConfigurationManager:
         secrets_filepath = SECRET_FILE_PATH):
 
         self.config = read_yaml(config_filepath)
-        self.secrets = read_yaml(secrets_filepath)
+        try:
+            self.secrets = read_yaml(secrets_filepath)
+        except FileNotFoundError:
+            self.secrets.groq_api_key = os.environ.get("GROQ_API_KEY")
 
     def get_llm_config(self):
         config = self.config.llm
