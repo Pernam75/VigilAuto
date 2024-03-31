@@ -7,7 +7,7 @@ class ConfigurationManager:
     def __init__(
         self,
         config_filepath = CONFIG_FILE_PATH,
-        secrets_filepath = SECRET_FILE_PATH):
+        secrets_filepath = SECRETS_FILE_PATH):
 
         self.config = read_yaml(config_filepath)
         try:
