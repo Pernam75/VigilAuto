@@ -5,9 +5,9 @@ name: VigilAutoAgent CI
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "main", "ci-workflow" ]
   pull_request:
-    branches: [ "main" ]
+    branches: [ "main", "ci-workflow" ]
 
 permissions:
   contents: read
