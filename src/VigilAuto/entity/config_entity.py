@@ -9,5 +9,13 @@ class LLMConfig:
     model_name: str
 
 @dataclass(frozen=True)
+class TTSConfig:
+    model_name: str
+    gpu: bool
+    speed: float
+    output_folder: str
+    file_path: str
+
+@dataclass(frozen=True)
 class STTConfig:
     model_name: str

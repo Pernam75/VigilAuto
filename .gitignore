@@ -1,10 +1,12 @@
 .env
 *.mp3
+*.wav
 !test_audio.mp3
 *.mp4
 .DS_Store
 VigilAuto.egg-info/
 config/secrets.yaml
+data/
 # ignore inputImage.jpg
 inputImage.jpg
 
