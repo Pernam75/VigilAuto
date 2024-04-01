@@ -7,3 +7,7 @@ class LLMConfig:
     max_tokens_response: int
     temperature: float
     model_name: str
+
+@dataclass(frozen=True)
+class STTConfig:
+    model_name: str

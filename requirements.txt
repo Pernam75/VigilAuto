@@ -1,5 +1,6 @@
 langchain-groq
 python-dotenv
+openai-whisper
 gTTS
 -e .
 python-box==6.0.2
