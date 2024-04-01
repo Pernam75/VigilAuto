@@ -1,7 +1,7 @@
 from VigilAuto.constants import *
 from VigilAuto.utils.common import read_yaml
 from VigilAuto.entity.config_entity import (LLMConfig,
-                                            TTSConfig)
+                                            TTSConfig,
                                             STTConfig)
 import os
 
