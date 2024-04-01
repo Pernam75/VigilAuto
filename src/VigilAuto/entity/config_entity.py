@@ -15,3 +15,7 @@ class TTSConfig:
     speed: float
     output_folder: str
     file_path: str
+
+@dataclass(frozen=True)
+class STTConfig:
+    model_name: str

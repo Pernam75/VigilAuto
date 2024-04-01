@@ -1,6 +1,7 @@
 from VigilAuto.config.configuration import ConfigurationManager
 from VigilAuto.components.llm import LLM
 from VigilAuto.components.tts import TTS
+from VigilAuto.components.stt import STT
 from VigilAuto import logger
 
 def test_llm():
@@ -20,3 +21,12 @@ def test_tts():
     print(output_path)
     assert output_path is not None
     assert output_path.exists()
+
+def test_stt():
+    config_manager = ConfigurationManager()
+    stt_config = config_manager.get_stt_config()
+    stt = STT(config=stt_config)
+    transcription = stt.transcribe("test_audio.mp3")
+    assert transcription is not None
+    assert type(transcription) == str
+    assert transcription.lower().__contains__("test")

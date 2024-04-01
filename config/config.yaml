@@ -9,3 +9,5 @@ tts:
   speed: 1.0
   output_folder: "tts_archive"
   file_path: "output.wav"
+stt:
+  model_name: "tiny"

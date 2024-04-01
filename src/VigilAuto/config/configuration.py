@@ -2,6 +2,7 @@ from VigilAuto.constants import *
 from VigilAuto.utils.common import read_yaml
 from VigilAuto.entity.config_entity import (LLMConfig,
                                             TTSConfig)
+                                            STTConfig)
 import os
 
 class ConfigurationManager:
@@ -26,7 +27,7 @@ class ConfigurationManager:
             temperature=config.temperature,
             model_name=config.model_name
         )
-
+      
     def get_tts_config(self):
         config = self.config.tts
         return TTSConfig(
@@ -35,4 +36,10 @@ class ConfigurationManager:
             speed=config.speed,
             output_folder=config.output_folder,
             file_path=config.file_path
+        )
+    
+    def get_stt_config(self):
+        config = self.config.stt
+        return STTConfig(
+            model_name=config.model_name
         )
