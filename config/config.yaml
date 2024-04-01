@@ -3,3 +3,9 @@ llm:
   max_tokens_response: 100
   temperature: 0
   model_name: "mixtral-8x7b-32768"
+tts:
+  model_name: "tts_models/fr/css10/vits"
+  gpu: False
+  speed: 1.0
+  output_folder: "tts_archive"
+  file_path: "output.wav"

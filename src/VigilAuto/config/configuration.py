@@ -1,6 +1,7 @@
 from VigilAuto.constants import *
 from VigilAuto.utils.common import read_yaml
-from VigilAuto.entity.config_entity import (LLMConfig)
+from VigilAuto.entity.config_entity import (LLMConfig,
+                                            TTSConfig)
 import os
 
 class ConfigurationManager:
@@ -24,4 +25,14 @@ class ConfigurationManager:
             max_tokens_response=config.max_tokens_response,
             temperature=config.temperature,
             model_name=config.model_name
+        )
+
+    def get_tts_config(self):
+        config = self.config.tts
+        return TTSConfig(
+            model_name=config.model_name,
+            gpu=config.gpu,
+            speed=config.speed,
+            output_folder=config.output_folder,
+            file_path=config.file_path
         )
