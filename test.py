@@ -1,5 +1,6 @@
 from VigilAuto.config.configuration import ConfigurationManager
 from VigilAuto.components.llm import LLM
+from VigilAuto.components.tts import TTS
 from VigilAuto import logger
 
 def test_llm():
@@ -10,3 +11,12 @@ def test_llm():
     print(api_response)
     assert api_response is not None
     assert type(api_response.content) == str
+
+def test_tts():
+    config_manager = ConfigurationManager()
+    tts_config = config_manager.get_tts_config()
+    tts = TTS(config=tts_config)
+    output_path = tts.synthetize("Ceci est un test de synthèse vocale pour le workflow d'intégration continue", "test")
+    print(output_path)
+    assert output_path is not None
+    assert output_path.exists()
