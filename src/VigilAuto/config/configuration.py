@@ -1,6 +1,7 @@
 from VigilAuto.constants import *
 from VigilAuto.utils.common import read_yaml
-from VigilAuto.entity.config_entity import (LLMConfig)
+from VigilAuto.entity.config_entity import (LLMConfig,
+                                            STTConfig)
 import os
 
 class ConfigurationManager:
@@ -23,5 +24,11 @@ class ConfigurationManager:
             system_prompt=config.system_prompt,
             max_tokens_response=config.max_tokens_response,
             temperature=config.temperature,
+            model_name=config.model_name
+        )
+    
+    def get_stt_config(self):
+        config = self.config.stt
+        return STTConfig(
             model_name=config.model_name
         )
