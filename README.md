@@ -17,7 +17,6 @@
 ---
 
 <p align="center">Revolutionize road safety with Vigil'Auto, our in-vehicle solution that analyzes driver behavior to predict driving under 
-    <br> 
     the influence of alcohol, using machine learning and generative AI technologies to monitor the driver and provide real-time alerts.
     <br>
 </p>
