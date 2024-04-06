@@ -1,5 +1,5 @@
 from VigilAuto.config.configuration import ConfigurationManager
-from VigilAuto.components.llm import LLM
+from VigilAuto.components.llm import LLM, LLMChat
 from VigilAuto.components.tts import TTS
 from VigilAuto.components.stt import STT
 from VigilAuto import logger
@@ -30,3 +30,14 @@ def test_stt():
     assert transcription is not None
     assert type(transcription) == str
     assert transcription.lower().__contains__("test")
+
+def test_llm_chat():
+    config_manager = ConfigurationManager()
+    llm_config = config_manager.get_llm_config()
+    llm = LLMChat(config=llm_config)
+    llm.predict("Bonjour VigilAuto, je m'appelle Jules et je suis le conducteur de la voiture.")
+    api_response = llm.predict("Comment je m'appelle ?")
+    assert api_response is not None
+    assert type(api_response) == str
+    assert api_response.lower().__contains__("jules")
+    assert len(llm.conversation.memory.chat_memory.dict()['messages'])
