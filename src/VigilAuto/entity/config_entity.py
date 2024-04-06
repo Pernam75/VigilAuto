@@ -10,9 +10,9 @@ class LLMConfig:
 
 @dataclass(frozen=True)
 class TTSConfig:
-    model_name: str
-    gpu: bool
-    speed: float
+    model_id: str
+    elevenlab_key: str
+    url: str
     output_folder: str
     file_path: str
 

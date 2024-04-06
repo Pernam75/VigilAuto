@@ -30,10 +30,11 @@ class ConfigurationManager:
       
     def get_tts_config(self):
         config = self.config.tts
+        secrets = self.secrets.tts if self.secrets else None
         return TTSConfig(
-            model_name=config.model_name,
-            gpu=config.gpu,
-            speed=config.speed,
+            model_id=config.model_id,
+            elevenlab_key=secrets.elevenlab_key if secrets else os.getenv("ELEVENLAB_KEY"),
+            url=config.url,
             output_folder=config.output_folder,
             file_path=config.file_path
         )

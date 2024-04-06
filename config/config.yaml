@@ -4,10 +4,8 @@ llm:
   temperature: 0
   model_name: "mixtral-8x7b-32768"
 tts:
-  model_name: "tts_models/fr/css10/vits"
-  # "tts_models/fr/mai/tacotron2-DDC" is also available (worse quality)
-  gpu: False
-  speed: 1.0
+  model_id: "eleven_multilingual_v1"
+  url: "https://api.elevenlabs.io/v1/text-to-speech/XeVbkJn7LVS2lH3RXcQJ"
   output_folder: "tts_archive"
   file_path: "output.wav"
 stt:
