@@ -34,7 +34,7 @@ def test_stt():
 def test_llm_chat():
     config_manager = ConfigurationManager()
     llm_config = config_manager.get_llm_config()
-    llm = LLMChat(config=llm_config)
+    llm = LLMChat(config=llm_config, alcool=0.0)
     llm.predict("Bonjour VigilAuto, je m'appelle Jules et je suis le conducteur de la voiture.")
     api_response = llm.predict("Comment je m'appelle ?")
     assert api_response is not None

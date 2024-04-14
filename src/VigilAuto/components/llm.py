@@ -17,23 +17,28 @@ class LLM:
         return result
 
 class LLMChat:
-    def __init__(self, config: LLMConfig):
-        template = """
+    def __init__(self, config: LLMConfig, alcool: float):
+        self.alcool = alcool
+        self.template = """
         Tu es un assistant vocal de conduite. Grâce à une caméra intégrée dans la voiture, le taux d'alcoolémie du conducteur a été mesuré.
-        Sache qu'un verre standard d'alccol équivault à 0.2g/L. Si le taux est supérieur à 0.5g/L, tu dois conseiller au conducteur de ne pas conduire. 
-        Reste concis très concis dans tes réponses.
+        Sache qu'un verre standard d'alccol équivault à 0 point 2 gramme par litre de sang. Si le taux est supérieur à 0 point 5 gramme par litre de sang, tu dois conseiller au conducteur de ne pas conduire. 
+        Ne sois pas trop directif ton rôle est de conseiller et non de commander.
+        Si le conducteur est en état d'ébriété, tu dois lui proposer de lui commander un taxi ou un VTC.
+        Si le conducteur est sobre, tu peux lui donner des conseils sur la conduite ou lui donner des informations sur la route.
+        Tu répondras toujours en langue française.
+        Reste concis très concis dans tes réponses (maximum 2 phrases)
         Conversation actuelle:
         {history}
         Utilisateur: {input}
         Assistant Vocal:"""
         self.config = config
-        self.llm = ChatGroq(groq_api_key=self.config.groq_api_key, model=self.config.model_name)
+        self.llm = ChatGroq(groq_api_key=self.config.groq_api_key, model=self.config.model_name, temperature=self.config.temperature)
         self.conversation = ConversationChain(
-            prompt=PromptTemplate(input_variables=["history", "input"], template=template),
+            prompt=PromptTemplate(input_variables=["history", "input"], template=self.template),
             llm=self.llm,
             verbose=False,
             memory=ConversationBufferMemory(ai_prefix="Assistant Vocal", human_prefix="Conducteur"),
         )
 
     def predict(self, input: str):
-        return self.conversation.predict(input=input)
+        return self.conversation.predict(input=input + f" (Taux d'alcoolémie: {self.alcool})")
