@@ -19,7 +19,7 @@ if __name__ == "__main__":
     output_path = tts.synthetize("Bonjour, je suis l'assistant vocal de conduite VigilAuto. Je suis là pour vous aider à conduire en toute sécurité.", "0_test")
     song = AudioSegment.from_mp3(output_path)
     play(song)
-    with open(f"trace_{alcool}.txt", "w") as f:
+    with open(f"traces_archive/{alcool}.txt", "w") as f:
         f.write("Vigil'Auto: Bonjour, je suis l'assistant vocal de conduite VigilAuto. Je suis là pour vous aider à conduire en toute sécurité.\n")
     i = 1
     exit = False
@@ -29,7 +29,7 @@ if __name__ == "__main__":
             exit = True
         else:
             llm_response = llm.predict(user_input)
-            with open(f"trace_{alcool}.txt", "a") as f:
+            with open(f"traces_archive/{alcool}.txt", "a") as f:
                 f.write(f"User: {user_input}\n")
                 f.write(f"Vigil'Auto: {llm_response}\n")
             output_path = tts.synthetize(llm_response, f"{i}_test")
