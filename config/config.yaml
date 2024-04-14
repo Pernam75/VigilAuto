@@ -7,6 +7,6 @@ tts:
   model_id: "eleven_multilingual_v1"
   url: "https://api.elevenlabs.io/v1/text-to-speech/XeVbkJn7LVS2lH3RXcQJ"
   output_folder: "tts_archive"
-  file_path: "output.wav"
+  file_path: "output.mp3"
 stt:
   model_name: "tiny"
