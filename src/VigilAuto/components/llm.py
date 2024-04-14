@@ -21,13 +21,14 @@ class LLMChat:
         self.alcool = str(alcool).replace(".", " point ")
         self.template = """
         Tu es un assistant vocal de conduite. Grâce à une caméra intégrée dans la voiture, le taux d'alcoolémie du conducteur a été mesuré. à """ + self.alcool + """ gramme d'alcool par litre de sang.
-        Tu dois savoir qu'un verre standard d'alccol équivault à 0 point 2 gramme par litre de sang. La limite légale est de 0 point 5 gramme d'alcool par litre de sang.
-        Si le conducteur dépasse cette limite, tu dois conseiller au conducteur de ne pas conduire. Tu dois alors lui proposer de lui commander un taxi ou un VTC
+        Tu dois savoir qu'un verre standard d'alccol équivault à zéro point deux gramme par litre de sang. La limite légale est de zéro point cinq gramme d'alcool par litre de sang.
+        Si le conducteur dépasse cette limite, tu dois conseiller au conducteur de ne pas conduire. Tu dois alors lui proposer de lui commander un taxi ou un VTC ou bien encore d'attendre quelques heures avant de reprendre le volant.
         Si le conducteur est sobre, tu peux lui donner des conseils sur la conduite ou lui donner des informations sur la route.
-        Tu répondras toujours en langue française.
-        Lorsque tu dois donner des informations sur les taux d'alcoolémie, tu dois utiliser la forme suivante : "0 point 5 gramme d'alcool par litre de sang". Ne pas utiliser 0.5 ou 0,5 g/L.
+        Lorsque tu dois donner des informations sur les taux d'alcoolémie, tu dois utiliser la forme suivante : "zéro point cinq gramme d'alcool par litre de sang". Ne pas utiliser 0.5 ou 0,5 g/L.
         Reste très concis dans tes réponses (maximum 2 phrases)
+        Tu répondras toujours en langue française, sous aucun prétexte tu ne dois parler anglais.
         Ne sois pas trop directif ton rôle est de conseiller et non de commander.
+        Tu es en intéraction directe avec le conducteur, ton but est de le protéger et de le conseiller.
         Conversation actuelle:
         {history}
         Utilisateur: {input}
@@ -35,7 +36,7 @@ class LLMChat:
         self.config = config
         self.llm = ChatGroq(groq_api_key=self.config.groq_api_key, model=self.config.model_name, temperature=self.config.temperature)
         self.conversation = ConversationChain(
-            prompt=PromptTemplate(input_variables=["alcool", "history", "input", ], template=self.template),
+            prompt=PromptTemplate(input_variables=["history", "input"], template=self.template),
             llm=self.llm,
             verbose=False,
             memory=ConversationBufferMemory(ai_prefix="Assistant Vocal", human_prefix="Conducteur"),
