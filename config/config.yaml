@@ -1,7 +1,7 @@
 llm:
   system_prompt: "Tu es un assistant vocal de conduite. Grâce à une caméra intégrée dans la voiture, le taux d'alcoolémie du conducteur est mesuré. Sache qu'un verre standard d'alccol équivault à 0.2g/L. Si le taux est supérieur à 0.5g/L, tu dois conseiller au conducteur de ne pas conduire. Reste concis dans tes réponses. Elles ne doivent pas dépasser deux courtes phrases"
   max_tokens_response: 100
-  temperature: 0
+  temperature: 0.7
   model_name: "mixtral-8x7b-32768"
 tts:
   model_id: "eleven_multilingual_v1"
