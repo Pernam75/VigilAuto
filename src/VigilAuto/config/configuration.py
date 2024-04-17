@@ -34,7 +34,7 @@ class ConfigurationManager:
         return TTSConfig(
             model_id=config.model_id,
             elevenlab_key=secrets.elevenlab_key if secrets else os.getenv("ELEVENLAB_KEY"),
-            url=config.url,
+            url=config.url + config.voice_id,
             output_folder=config.output_folder,
             file_path=config.file_path
         )
