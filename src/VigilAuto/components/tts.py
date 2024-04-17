@@ -2,6 +2,7 @@ from VigilAuto import logger
 from VigilAuto.entity.config_entity import TTSConfig
 from pathlib import Path
 import requests 
+import json
 
 class TTS:
     def __init__(self, config:TTSConfig):
@@ -21,6 +22,10 @@ class TTS:
         }
 
         response = requests.request("POST", self.config.url, json=payload, headers=headers)
+
+        if response.status_code != 200:
+            logger.error(f"Error while calling the TTS API: {response.text}")
+            raise Exception(f"Error while calling the TTS API {response.text}")
         
         output_path = Path(self.config.output_folder) / f"{file_id}_{self.config.file_path}"
 
