@@ -87,7 +87,7 @@ Give examples
 
 - Python 3.10.14 or higher
 
-- Install ffmpeg for audio processing
+#### Install ffmpeg for audio processing
 
 MacOS:
 ```bash
@@ -103,7 +103,11 @@ Windows *(Not tested)*:
 - Download the latest version of ffmpeg from [here](https://ffmpeg.org/download.html)
 - Extract the zip file and add the bin folder to your PATH
 
+#### Create your Groq API key
+
 - Go to [Groq Cloud Console](https://console.groq.com/playground) and create an account to get your API key. The free version will let you make 30 requests per minute with a maximum of 18,000 tokens per minute. We used Mixtral 8x7B model for our conversational agent but you can also use gemma-7B or Llama-70B models.
+
+#### Create your ElevenLabs API key
 
 - Go to [ElevenLab Website](https://elevenlabs.io/) and create an account to get your API key. The free version will let you make 10k characters quota per month. You also need to chose a voice for the Text-to-Speech and add it to you voice library. We used the Nicolas' voice for our conversational agent (id: ```aQROLel5sQbj1vuIVi6B```) but you can provide your own voice id in the ```config/config.yaml``` file in the ```url``` field.
 
