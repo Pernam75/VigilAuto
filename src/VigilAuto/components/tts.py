@@ -21,6 +21,8 @@ class TTS:
             "Content-Type": "application/json"
         }
 
+        print(f"Calling the ElevenLabs API with {self.config.url}")
+
         response = requests.request("POST", self.config.url, json=payload, headers=headers)
 
         if response.status_code != 200:
