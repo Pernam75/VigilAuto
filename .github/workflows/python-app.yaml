@@ -5,9 +5,9 @@ name: VigilAutoAgent CI
 
 on:
   push:
-    branches: [ "main", "tts-update" ]
+    branches: [ "main" ]
   pull_request:
-    branches: [ "main", "tts-update" ]
+    branches: [ "main" ]
 
 permissions:
   contents: read

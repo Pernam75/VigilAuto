@@ -99,7 +99,13 @@ Ubuntu:
 sudo apt-get install ffmpeg
 ```
 
+Windows *(Not tested)*:
+- Download the latest version of ffmpeg from [here](https://ffmpeg.org/download.html)
+- Extract the zip file and add the bin folder to your PATH
+
 - Go to [Groq Cloud Console](https://console.groq.com/playground) and create an account to get your API key. The free version will let you make 30 requests per minute with a maximum of 18,000 tokens per minute. We used Mixtral 8x7B model for our conversational agent but you can also use gemma-7B or Llama-70B models.
+
+- Go to [ElevenLab Website](https://elevenlabs.io/) and create an account to get your API key. The free version will let you make 10k characters quota per month. You also need to chose a voice for the Text-to-Speech and add it to you voice library. We used the Nicolas' voice for our conversational agent (id: ```aQROLel5sQbj1vuIVi6B```) but you can provide your own voice id in the ```config/config.yaml``` file in the ```url``` field.
 
 ### Installing
 
@@ -129,11 +135,12 @@ git clone https://github.com/julesrubin/VigilAuto.git
 pip install -r requirements.txt
 ```
 
-3. Create a secret.yaml in the config folder and provide your Groq API key
-
+3. Create a secret.yaml in the config folder and provide your Groq API key and ElevenLab API key
 ```yaml
 llm:
   groq_api_key: "<YOUR_GROQ_API_KEY>"
+tts:
+  elevenlab_key: "<YOUR_ELEVENLAB_API_KEY>"
 ```
 
 4. Run the application
