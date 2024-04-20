@@ -40,5 +40,6 @@ jobs:
     - name: Test with pytest
       env:
         GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+        ELEVENLAB_KEY: ${{ secrets.ELEVENLAB_KEY }}
       run: |
         pytest test.py

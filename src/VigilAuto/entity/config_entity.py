@@ -12,7 +12,7 @@ class LLMConfig:
 class TTSConfig:
     model_id: str
     elevenlab_key: str
-    url: str
+    voice_id: str
     output_folder: str
     file_path: str
 
