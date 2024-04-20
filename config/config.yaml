@@ -4,8 +4,8 @@ llm:
   temperature: 0.7
   model_name: "mixtral-8x7b-32768"
 tts:
-  model_id: "eleven_multilingual_v1"
-  url: "https://api.elevenlabs.io/v1/text-to-speech/XeVbkJn7LVS2lH3RXcQJ"
+  model_id: "eleven_multilingual_v2"
+  voice_id: "XeVbkJn7LVS2lH3RXcQJ"
   output_folder: "tts_archive"
   file_path: "output.mp3"
 stt:
