@@ -1,9 +1,8 @@
 from VigilAuto import logger
 from VigilAuto.entity.config_entity import TTSConfig
 from pathlib import Path
-import requests 
-import json
-
+from elevenlabs.client import ElevenLabs
+from elevenlabs import save # TODO stream method is also available
 class TTS:
     def __init__(self, config:TTSConfig):
         self.config=config
@@ -12,27 +11,19 @@ class TTS:
             Path(config.output_folder).mkdir(parents=True, exist_ok=True)
         
     def synthetize(self, text:str, file_id: str) -> str:
-        payload = {
-            "model_id": self.config.model_id,
-            "text": text
-        }
-        headers = {
-            "xi-api-key": self.config.elevenlab_key,
-            "Content-Type": "application/json"
-        }
-
-        print(f"Calling the ElevenLabs API with {self.config.url}")
-
-        response = requests.request("POST", self.config.url, json=payload, headers=headers)
-
-        if response.status_code != 200:
-            logger.error(f"Error while calling the TTS API: {response.text}")
-            raise Exception(f"Error while calling the TTS API {response.text}")
         
         output_path = Path(self.config.output_folder) / f"{file_id}_{self.config.file_path}"
-
-        with open(output_path, 'wb') as f:
-            for chunk in response.iter_content(chunk_size=1024):
-                if chunk:  # filter out keep-alive new chunks
-                    f.write(chunk)
+        client = ElevenLabs(
+            api_key=self.config.elevenlab_key
+        )
+        audio = client.generate(
+            text=text,
+            voice=self.config.voice_id,
+            model=self.config.model_id,
+        )
+        try:
+            save(audio, output_path)
+        except Exception as e:
+            print(f"Error when saving the output file: {e}")
+            return None
         return output_path
